@@ -11,8 +11,8 @@ const noopStore = {
   setItem: function(){}
 };
 
-if (typeof window !== 'undefined' && 'localStorage' in window && window['localStorage'] !== null) {
-  try {
+try {
+	if (typeof window !== 'undefined' && 'localStorage' in window && window['localStorage'] !== null) {
     let key = '__pushtell_react__';
     window.localStorage.setItem(key, key);
     if (window.localStorage.getItem(key) !== key) {
@@ -21,10 +21,10 @@ if (typeof window !== 'undefined' && 'localStorage' in window && window['localSt
       window.localStorage.removeItem(key);
       store = window.localStorage;
     }
-  } catch (e) {
-    store = noopStore;
-  }
-} else {
+	} else {
+	  store = noopStore;
+	}
+} catch (e) {
   store = noopStore;
 }
 
